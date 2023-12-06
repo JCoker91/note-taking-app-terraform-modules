@@ -1,19 +1,19 @@
+terraform {
+    backend "s3" {
+        bucket = var.remote_state_bucket
+        key    = var.remote_state_key
+        region = var.region
+        dynamodb_table = "nta-locks"
+        encrypt = true
+    }
+}
+
 locals {
   http_port    = 80
   any_port     = 0
   any_protocol = "-1"
   tcp_protocol = "tcp"
   all_ips      = ["0.0.0.0/0"]
-}
-
-data "terraform_remote_state" "db" {
-    backend = "s3"
-
-    config = {
-        bucket = var.db_remote_state_bucket
-        key = var.db_remote_state_key
-        region = var.region
-    }
 }
 
 data "aws_vpc" "default" {
