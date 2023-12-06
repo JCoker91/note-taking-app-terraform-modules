@@ -33,3 +33,8 @@ variable "max_size" {
   description = "The maximum number of EC2 Instances in the ASG"
   type        = number
 }
+
+variable "region" {
+    description = "The AWS region to deploy to"
+    type        = string
+}
